@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+<style>
+*{
+  margin: 0;
+}
+  div{
+    width: 100%;
+    height: 200px;
+    background-color: black;
+  }
+</style>
+<script type="text/javascript">
+
+function game() {
+var palavra = palavras.value;
+var resposta = [];
+var Erro = 6;
+for (var i = 0; i < palavra.length; i++) {
+  resposta[i] = "_";
+}
+
+var letrasRestantes = palavra.length;
+document.getElementById('campo').innerHTML ='';
+  while (letrasRestantes > 0 && Erro > 0) {
+    Erro--;
+    alert(resposta.join(" "));
+ 
+    var adivinhar = prompt("Adivinhe uma letra em 5 rodadas ou clique em 'Cancelar' para parar o jogo.");
+    if (adivinhar === null) {
+      break;
+    } else if (adivinhar.length !== 1) {
+      alert("Adivinhe uma letra por vez.");
+    } else {
+      for (var j = 0; j < palavra.length; j++) {
+        if (palavra[j] === adivinhar) {
+          resposta[j] = adivinhar;
+          letrasRestantes--;
+        }
+      }
+    }
+    if (letrasRestantes == 0 ) {
+    document.getElementById('win').innerHTML = "Parabens! A palavra é: " + palavra;
+  }
+  else{
+    document.getElementById('win').innerHTML = "Que pena! Clique F5 pra jogar novamente";
+  }
+  }
+}
+</script>
+</head>
+<body>
+  <div style="background-color: gold;" id="campo">
+    <center><input type="text" id="palavras" width="50%" style="bottom:50%"><button onclick="game()"> Iniciar</button><br></center>
+  </div>
+  <div></div>
+  <div><center><p id="win" style="color: white;"></center></div>
+
+</body>
+</html>
